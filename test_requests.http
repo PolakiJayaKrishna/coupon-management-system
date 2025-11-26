@@ -1,0 +1,92 @@
+### Create Coupon 1 (Flat Discount)
+POST http://localhost:8081/coupons
+Content-Type: application/json
+
+{
+  "code": "SAVE100",
+  "description": "Save 100 on orders above 1000",
+  "discountType": "FLAT",
+  "discountValue": 100.0,
+  "startDate": "2023-01-01T00:00:00",
+  "endDate": "2025-12-31T23:59:59",
+  "eligibility": {
+    "minCartValue": 1000.0
+  }
+}
+
+### Create Coupon 2 (10% Off Electronics)
+POST http://localhost:8081/coupons
+Content-Type: application/json
+
+{
+  "code": "ELEC10",
+  "description": "10% off on Electronics",
+  "discountType": "PERCENT",
+  "discountValue": 10.0,
+  "maxDiscountAmount": 500.0,
+  "startDate": "2023-01-01T00:00:00",
+  "endDate": "2025-12-31T23:59:59",
+  "eligibility": {
+    "applicableCategories": ["electronics"]
+  }
+}
+
+### Get All Coupons
+GET http://localhost:8081/coupons
+
+### Find Best Coupon (Should match SAVE100)
+POST http://localhost:8081/applicable-coupons
+Content-Type: application/json
+
+{
+  "user": {
+    "userId": "u1",
+    "userTier": "REGULAR",
+    "lifetimeSpend": 0,
+    "ordersPlaced": 0,
+    "country": "IN"
+  },
+  "cart": {
+    "items": [
+      {
+        "productId": "p1",
+        "category": "fashion",
+        "unitPrice": 1200.0,
+        "quantity": 1
+      }
+    ]
+  }
+}
+
+### Find Best Coupon (Should match ELEC10)
+POST http://localhost:8081/applicable-coupons
+Content-Type: application/json
+
+{
+  "user": {
+    "userId": "u1",
+    "userTier": "REGULAR",
+    "lifetimeSpend": 0,
+    "ordersPlaced": 0,
+    "country": "IN"
+  },
+  "cart": {
+    "items": [
+      {
+        "productId": "p2",
+        "category": "electronics",
+        "unitPrice": 2000.0,
+        "quantity": 1
+      }
+    ]
+  }
+}
+
+### Demo Login
+POST http://localhost:8081/api/login
+Content-Type: application/json
+
+{
+  "email": "hire-me@anshumat.org",
+  "password": "HireMe@2025!"
+}
