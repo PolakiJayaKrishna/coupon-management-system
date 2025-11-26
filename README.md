@@ -84,6 +84,9 @@ Run the following command to execute the automated test suite:
     2.  Right-click on the `com.example.couponmanagement` package (or the `CouponManagementApplicationTests.java` file).
     3.  Select **Run 'Tests in...'** (look for the green play icon).
 
+## Quick Testing
+A `test_requests.http` file is included in the project root. This file can be used in IntelliJ IDEA or VS Code to run API requests directly against the running application, eliminating the need for external tools like Postman.
+
 ## AI Usage & Workflow
 This project was developed by leveraging AI tools to simulate a modern, high-efficiency software development workflow. I utilized AI assistance to:
 *   **Accelerate Development**: Rapidly scaffold the project structure and generate boilerplate code, allowing me to focus on the core business logic.
